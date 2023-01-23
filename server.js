@@ -5,9 +5,7 @@ require("console.table");
 const db = mysql.createConnection(
     {
       host: 'localhost',
-      // MySQL username,
       user: 'root',
-      // TODO: Add MySQL password here
       password: 'Edxsql12',
       database: 'employee_db'
     },
@@ -21,6 +19,39 @@ function firstPrompt() {
         type: 'list',
         name: 'task',
         message: 'What would you like to do?',
-        choices: ['view Employees', 'View Employees by Department', 'Add an Employee', 'Remove an Employee', 'Update an Employee Role', 'Add a New Role', 'End']
+        choices: ['View Employees', 'View All Roles', 'View All Employees', 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employees Role', 'Stop']
         
     })
+};
+
+function viewEmployees() {
+
+};
+
+function viewRoles() {
+
+};
+
+function viewAllEmployees() {
+
+};
+
+function addDepartment() {
+
+};
+
+function addRole() {
+
+};
+
+function addEmployee() {
+
+};
+
+function updateRole() {
+
+};
+
+function stopApp() {
+    connection.end();
+};
