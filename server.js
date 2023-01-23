@@ -13,11 +13,11 @@ const db = mysql.createConnection(
 console.log(`Connected to the mainframe.`)
 );
 
-const firstPrompt = [ 
-    {
+function firstPrompt() { 
+    inquirer.prompt ({
         type: 'list',
         name: 'task',
         message: 'What would you like to do?',
-        choices: ['view Employees', 'View Employees by Department', 'Add an Employee', 'Remove an Employee', 'Update an Employee Role', 'Add a New Role', 'End'],
+        choices: ['view Employees', 'View Employees by Department', 'Add an Employee', 'Remove an Employee', 'Update an Employee Role', 'Add a New Role', 'End']
         
-    }]
+    })
