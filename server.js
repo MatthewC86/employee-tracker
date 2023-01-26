@@ -63,17 +63,17 @@ function firstPrompt() {
         else if (answers.task == 'Add a Role') {
             inquirer.prompt({
                         name: "title",
-                        message: "Enter role title:",
+                        message: "Enter the role title:",
                         type: "input"
                     },
                     {
                         name: "salary",
-                        message: "Enter salary:",
+                        message: "Expected salary?",
                         type: "input"
                     },
                     {
                         name: "department_id",
-                        message: "Enter department ID:",
+                        message: "What is the department ID?",
                         type: "input"
                     }
         )
@@ -88,6 +88,38 @@ function firstPrompt() {
                 })
         }
                 
+        else if (answers.task == 'Add an Employee') {
+            inquirer.prompt({
+                        name: "first_name",
+                        message: "What is the employees first name?",
+                        type: "input"
+                    },
+                    {
+                        name: "last_name",
+                        message: "What is the employees last name?",
+                        type: "input"
+                    },
+                    {
+                        name: "roles_id",
+                        message: "What is their role?",
+                        type: "input"
+                    },
+                    {
+                        name: "manager_id",
+                        message: "Who will be their manager?",
+                        type: "input"
+                    }
+        )
+                .then(answers => {
+                    db.query(`INSERT INTO roles (first_name, last_name, roles_id, manager_id) VALUES 
+                    (?, ?, ?)`, [ answers.first_name, answers.last_name, answers.roles_id, answers.manager_id ],
+                     function (err, res) {
+                        console.table(res)
+                        if (err) throw err
+                    })
+                    
+                })
+        }
 
 
     
@@ -101,6 +133,7 @@ function firstPrompt() {
 
 
 
-// function stopApp() {
-//     connection.end();
-// };
+function stopApp() {
+    connection.end();
+};
+stopApp();
