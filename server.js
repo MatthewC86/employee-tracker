@@ -1,7 +1,9 @@
+// Required models
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
 require("console.table");
 
+// Connection
 const db = mysql.createConnection(
     {
         host: 'localhost',
@@ -12,6 +14,7 @@ const db = mysql.createConnection(
     console.log(`Connected to the mainframe.`)
 );
 
+// Port
 const PORT = process.env.PORT || 3001;
 
 firstPrompt();
@@ -23,6 +26,7 @@ function firstPrompt() {
         message: 'What would you like to do?',
         choices: ['View Employees', 'View All Departments', 'View All Roles', 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employees Role', 'Stop']
 
+        // WHen View Employees is selected, the employees table will display
     }).then(answers => {
         if (answers.task == 'View Employees') {
             db.query('SELECT * FROM employees', function (err, res) {
@@ -59,7 +63,7 @@ function firstPrompt() {
                 })
         }
 
-
+        // Prompt for add role. Will run through questions and add them to the db
         else if (answers.task == 'Add a Role') {
             inquirer.prompt({
                         name: "title",
@@ -132,8 +136,8 @@ function firstPrompt() {
 
 
 
-
+// Stop app
 function stopApp() {
     connection.end();
 };
-stopApp();
+
