@@ -21,35 +21,38 @@ function firstPrompt() {
         type: 'list',
         name: 'task',
         message: 'What would you like to do?',
-        choices: ['View Employees', 'View All Roles', 'View All Departments', 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employees Role', 'Stop']
+        choices: ['View Employees', 'View All Departments', 'View All Roles', 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employees Role', 'Stop']
+
+    }).then(answers => {
+        if (answers.task == 'View Employees') {
+            db.query('SELECT * FROM employees', function (err, res) {
+                console.table(res)
+                if (err) throw err
+            })
+        }
+
+        else if (answers.task == 'View All Departments') {
+            db.query('SELECT * FROM departments', function (err, res) {
+                console.table(res)
+                if (err) throw err
+            })
+        }
+
+        
+                
+
 
     
-
-
-function viewRoles() {
-
+    
+    
+    
+    
+    })
 };
 
-function viewAllEmployees() {
 
-};
 
-function addDepartment() {
 
-};
-
-function addRole() {
-
-};
-
-function addEmployee() {
-
-};
-
-function updateRole() {
-
-};
-
-function stopApp() {
-    connection.end();
-};
+// function stopApp() {
+//     connection.end();
+// };
