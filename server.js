@@ -38,8 +38,13 @@ function firstPrompt() {
             })
         }
 
+        else if (answers.task == 'View All Roles') {
+            db.query('SELECT * FROM roles', function (err, res) {
+                console.table(res)
+                if (err) throw err
+            })
+        }
         
-                
 
 
     
