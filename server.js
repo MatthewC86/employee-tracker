@@ -60,7 +60,37 @@ function firstPrompt() {
         }
 
 
-        
+        else if (answers.task == 'Add a Role') {
+            inquirer.prompt({
+                        name: "title",
+                        message: "Enter role title:",
+                        type: "input"
+                    },
+                    {
+                        name: "salary",
+                        message: "Enter salary:",
+                        type: "input"
+                    },
+                    {
+                        name: "department_id",
+                        message: "Enter department ID:",
+                        type: "input"
+                    }
+        )
+                .then(answers => {
+                    db.query(`INSERT INTO roles (title, salary, departments_id) VALUES 
+                    (?, ?, ?)`, [ answers.title, answers.salary, answers.department_id ],
+                     function (err, res) {
+                        console.table(res)
+                        if (err) throw err
+                    })
+                    
+                })
+        }
+                
+
+
+    
     
     
     
